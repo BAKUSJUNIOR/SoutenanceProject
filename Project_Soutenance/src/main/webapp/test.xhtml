@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<div class="card">
+    <h:form>
+        <p:growl>
+            <p:autoUpdate/>
+        </p:growl>
+       
+
+        <h5>Multiple</h5>
+        <p:selectCheckboxMenu id="multiple" value="#{checkboxView.selectedCities2}" label="Cities" style="min-width: 15rem"
+                                  multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250"
+                                  emptyLabel="Please select..." updateLabel="true">
+                <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/>
+                <f:selectItems value="#{checkboxView.cities}"/>
+            </p:selectCheckboxMenu>
+
+        <h5>Grouped</h5>
+        <p:selectCheckboxMenu id="grouped" value="#{checkboxView.selectedCountries}" label="Countries" style="width: 15rem"
+                                multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" scrollHeight="250">
+            <f:selectItems value="#{checkboxView.countries}"/>
+        </p:selectCheckboxMenu>
+    </h:form>
+</div>	
+</html>

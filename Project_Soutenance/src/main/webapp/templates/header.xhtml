@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:body>
+<div style="background-color:#26699c ">
+
+<table > 
+<tr >
+	<td > 
+		<img src="../resource/images/IsmiLogo.png" style=" margin-left: 30px ; padding-top: 10px" width="850%"/>
+		<div style="margin-left: 10px">
+		<h:outputLabel value="#{initialController.annneScolaire.libelleAnneeScol}" style="color:white"></h:outputLabel>
+	</div>
+	</td>
+	<td style="width:800%"><p style="text-align: center;color:#fff;display: inline;font-size: 32px;size: 100px;font-family: Georgia, 'Times New Roman', Times, serif; padding-left: 25%">
+	SYSTEME DE GESTION DU PATRIMOINE D'ISMI</p></td> 
+	<td ><div class="account-details" >
+			<span class="account-name">&nbsp;</span> 
+			<span> <a href="#">Profile</a> <a href="../logout.jsp" style="color: red">Se déconnecter</a> </span>
+
+		</div>
+		<br />
+			<div>
+			<p:outputLabel value="Utilisateur: " style="color:white"></p:outputLabel>
+			<h:outputLabel value="#{initialController.user.nomUser} #{initialController.user.prenomsUser}" style="color:white"></h:outputLabel>
+			</div>
+		
+		</td> 
+	</tr>
+	</table>
+	
+	</div>
+
+</h:body>
+</html>
