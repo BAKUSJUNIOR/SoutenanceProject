@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 17 oct. 2022 à 19:09:55 by Hibernate Tools 4.3.6.Final
+// Generated 7 nov. 2022 à 12:20:01 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,34 +24,37 @@ public class Materiels implements java.io.Serializable {
 	private Integer idMateriel;
 	private Magasin magasin;
 	private TypeMateriel typeMateriel;
-	private String docReference;
+	private String reference;
 	private String emplacement;
 	private String utilisateur;
-	private String codeMateriel;
+	private String libelle;
+	private int qte;
 	private Set<EntrerMateriel> entrerMateriels = new HashSet<EntrerMateriel>(0);
 	private Set<Demande> demandes = new HashSet<Demande>(0);
 
 	public Materiels() {
 	}
 
-	public Materiels(Magasin magasin, TypeMateriel typeMateriel, String docReference, String emplacement,
-			String utilisateur, String codeMateriel) {
+	public Materiels(Magasin magasin, TypeMateriel typeMateriel, String reference, String emplacement,
+			String utilisateur, String libelle, int qte) {
 		this.magasin = magasin;
 		this.typeMateriel = typeMateriel;
-		this.docReference = docReference;
+		this.reference = reference;
 		this.emplacement = emplacement;
 		this.utilisateur = utilisateur;
-		this.codeMateriel = codeMateriel;
+		this.libelle = libelle;
+		this.qte = qte;
 	}
 
-	public Materiels(Magasin magasin, TypeMateriel typeMateriel, String docReference, String emplacement,
-			String utilisateur, String codeMateriel, Set<EntrerMateriel> entrerMateriels, Set<Demande> demandes) {
+	public Materiels(Magasin magasin, TypeMateriel typeMateriel, String reference, String emplacement,
+			String utilisateur, String libelle, int qte, Set<EntrerMateriel> entrerMateriels, Set<Demande> demandes) {
 		this.magasin = magasin;
 		this.typeMateriel = typeMateriel;
-		this.docReference = docReference;
+		this.reference = reference;
 		this.emplacement = emplacement;
 		this.utilisateur = utilisateur;
-		this.codeMateriel = codeMateriel;
+		this.libelle = libelle;
+		this.qte = qte;
 		this.entrerMateriels = entrerMateriels;
 		this.demandes = demandes;
 	}
@@ -88,13 +91,13 @@ public class Materiels implements java.io.Serializable {
 		this.typeMateriel = typeMateriel;
 	}
 
-	@Column(name = "DOC_REFERENCE", nullable = false, length = 65535)
-	public String getDocReference() {
-		return this.docReference;
+	@Column(name = "REFERENCE", nullable = false, length = 65535)
+	public String getReference() {
+		return this.reference;
 	}
 
-	public void setDocReference(String docReference) {
-		this.docReference = docReference;
+	public void setReference(String reference) {
+		this.reference = reference;
 	}
 
 	@Column(name = "EMPLACEMENT", nullable = false, length = 65535)
@@ -115,13 +118,22 @@ public class Materiels implements java.io.Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-	@Column(name = "CODE_MATERIEL", nullable = false, length = 65535)
-	public String getCodeMateriel() {
-		return this.codeMateriel;
+	@Column(name = "LIBELLE", nullable = false, length = 65535)
+	public String getLibelle() {
+		return this.libelle;
 	}
 
-	public void setCodeMateriel(String codeMateriel) {
-		this.codeMateriel = codeMateriel;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	@Column(name = "QTE", nullable = false)
+	public int getQte() {
+		return this.qte;
+	}
+
+	public void setQte(int qte) {
+		this.qte = qte;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiels")

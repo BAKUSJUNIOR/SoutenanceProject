@@ -8,22 +8,21 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
         
     <http auto-config="true">
-        <intercept-url pattern="/pagesAdmin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/templates/templateAdmin.xhtml" access="ROLE_ADMIN" />
+        <intercept-url pattern="/pagesAdmins/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/template/templateAdminss.xhtml" access="ROLE_ADMIN" />
         
-        <intercept-url pattern="/pagesEnseignant/**" access="ROLE_ENSEIGNANT"/>
-        <intercept-url pattern="/templates/templateEnseignant.xhtml" access="ROLE_ENSEIGNANT"/>
+        <intercept-url pattern="/templatess/templateAdmin.xhtml" access="ROLE_USER"/>
+        <intercept-url pattern="/templatess/templateUser.xhtml" access="ROLE_USER"/>
         
-        <intercept-url pattern="/pagesEtudiant/**" access="ROLE_ETUDIANT"/>
-        <intercept-url pattern="/templates/templateEtudiant.xhtml" access="ROLE_ETUDIANT"/>
-        <form-login 
+       
+       <form-login 
         			login-page="/login.jsp" 
         			default-target-url="/index.xhtml"
                   	authentication-failure-url="/errordroit.xhtml"/>
    
          <logout logout-url="/logout.jsp" logout-success-url="/index.xhtml" />
         <csrf/>
-    </http>
+    </http> 
     
     <authentication-manager>
 		<authentication-provider>

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ <h:head>
+ <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'></link>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+     <link rel="stylesheet" href="resource/css/Style.css"></link>
+ </h:head>
+
+		<ui:composition template="/templates/templateAdmin.xhtml">
+		
+		<ui:define name="body">
+		
+		 <div style="font-size: 16px ; padding-top: 10px; padding-left: 10px; padding-right: 10px"> 
+		 
+		<h:form id="form">
+		<p:messages autoUpdate="true" closable="true" showDetail="false"></p:messages>
+		<p:panel header="ENREGISTRER CATEGORIES MATERIEL ET LES MAGASINS" style="text-align:center ">
+		
+		<h:panelGrid columns="4" cellspacing="15" style="" >
+		
+     
+            <p:outputLabel style="padding-left:100px"  for="TypeMateriel" value="Type Materiel :"></p:outputLabel>
+            <p:inputText id="TypeMateriel" value="#{typeMaterielControllers.typemateriel.nomTypemat}"></p:inputText>
+            
+            <p:outputLabel style="padding-left:280px"  for="TypeMateriel" value="Nom Magasin :"></p:outputLabel>
+            <p:inputText id="Magasin" value="#{magasinControllers.magasin.nomMagasin}"></p:inputText>
+            
+
+		</h:panelGrid >
+		
+		
+			<p:toolbar style=" padding-top: 15px ;  background-color: red ">
+	         
+	           <f:facet name="left">
+	             <p:commandButton value="Enregistrer Catégorie"  actionListener="#{typeMaterielControllers.enregistrer}"  update="form"></p:commandButton>
+	             <p:commandButton  value="Modifier " actionListener="#{typeMaterielControllers.modifier}" binding="#{typeMaterielControllers.modifierBtn}"  update="form" ><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm> </p:commandButton>
+	             <p:commandButton value="Annuler"  actionListener="#{typeMaterielControllers.annuler}"  update="form"></p:commandButton> 
+	             <p:commandButton value="Supprimer"  actionListener="#{typeMaterielControllers.supprimer}" update="form" ><p:confirm header="confirmation" message="confirmez-vous la suppression?"></p:confirm> </p:commandButton>  
+	         
+	         </f:facet>
+	         
+	         <f:facet name="right">
+	        
+	         <p:commandButton value="Enregistrer Magasin" actionListener="#{magasinControllers.enregistrer}" update="form"></p:commandButton>
+	          <p:commandButton value="Modifier " actionListener="#{magasinControllers.modifier}" binding="#{magasinControllers.modifierBtn}" update="form" ><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm> </p:commandButton>
+	         <p:commandButton value="Annuler" actionListener="#{magasinControllers.annuler}" update="form"></p:commandButton>
+	         <p:commandButton value="Supprimer" actionListener="#{magasinControllers.supprimer}" update="form" ><p:confirm header="confirmation" message="confirmez-vous la suppression?"></p:confirm></p:commandButton>
+	         
+	         
+	         </f:facet>
+	         
+	         
+	   </p:toolbar>
+
+	
+		</p:panel>
+		
+		
+		 <div style="font-size: 15px ; padding-top: 10px; padding-left: 20px; padding-right: 20px">
+
+		<p:dataTable style=" padding:10px; " var="variable" value="#{typeMaterielControllers.listTable}"  selectionMode="single" selection="#{typeMaterielControllers.selectedTypeMateriel}" rowKey="#{variable.idTypemat}">
+	  <f:facet name="header">LISTES TYPE MATERIEL </f:facet>
+	  <p:ajax event="rowSelect"  update="form"  listener="#{typeMaterielControllers.selectionnerLigne}"></p:ajax>
+	     
+	     <p:column headerText="N°_Type Materiel" style="width:2px">
+	     <h:outputText value="#{variable.idTypemat}" />
+	    </p:column>
+	     <p:column headerText="Type Materiel" style="width:60px">
+	     <h:outputText value="#{variable.nomTypemat}" />
+	     </p:column>
+
+	   </p:dataTable>
+	   
+	   
+	   
+	  <p:dataTable  style="padding:10px; " var="variable" value="#{magasinControllers.listTable}" selectionMode="single" selection="#{magasinControllers.selectedMagasin}" rowKey="#{variable.idMagasin}">
+	  <f:facet name="header">LISTES MAGASIN</f:facet>
+	  <p:ajax event="rowSelect" update="form" listener="#{magasinControllers.selectionnerLigne}" ></p:ajax>
+	  
+	  <p:column headerText="N° Magasin" style="width:2px">
+	     <h:outputText value="#{variable.idMagasin}" />
+	    </p:column>
+	     <p:column headerText="Nom Magasin" style="width:60px">
+	     <h:outputText value="#{variable.nomMagasin}" />
+	     </p:column>
+	  
+	  
+	  </p:dataTable>
+	  </div>
+
+	  
+	   
+	   
+		
+		
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   
+	   </p:confirmDialog>
+		
+		
+		</h:form>
+		 </div> 
+		</ui:define>
+	</ui:composition>
+	
+
+</html>

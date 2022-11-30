@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<link rel="stylesheet" type="text/css" href="/ressource/css/ngo.css"></link>
+<link rel="stylesheet" type="text/css" href="/ressource/css/monStyle.css"></link>
+<link rel="stylesheet" type="text/css" href="/resource/css/domi.css"></link>
+<link rel="stylesheet" type="text/css" href="/resource/css/Style.css"></link>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+
+  <title><ui:insert name="title">ISMIGestion</ui:insert></title>
+</h:head>
+
+<h:body>
+
+<p:layout fullPage="true">
+	<p:layoutUnit position="north" >
+		<div id="header">
+		    <ui:insert name="header">
+		    	<ui:include  src="/templates/header.xhtml"></ui:include>
+		    </ui:insert>
+		</div>
+	</p:layoutUnit>
+	
+	 <p:layoutUnit position="west" size="250" header="ISMI GESTION" collapsible="true" style="background-color:#0c0c0ca0" outcome="/index.xhtml">
+	
+		<h:form>
+			<p:panelMenu >
+					
+			 <p:submenu label="Tâche Users"  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 19px">	
+			    <p:menuitem value="ACCUEIL" outcome="/index.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 17px"/>
+				<p:menuitem value="DEMANDE" outcome="/pagesUser/DemandeMat.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+				<p:menuitem value="LIGNE DEMANDE" outcome="/pagesUser/LigneDemande.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+				
+			</p:submenu>
+			
+				
+			<p:submenu label="Vue Materiels"  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 19px">
+			<p:menuitem value="MATERIELS DISPONIBLE" outcome="/templates/templateUser.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+	
+			</p:submenu>
+			
+			</p:panelMenu>
+		</h:form>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="center" >
+		<div id="content" class="div_fond">
+		  <ui:insert name="body" >
+		
+		 <div style="font-size: 13px ; padding-top: 8px; padding-left: 10px; padding-right: 30px">  
+    <h:form>
+        
+     <div style="font-size: 14px ; padding-top: 10px; padding-left: 10px; padding-right: 40px">
+        <p:dataTable style="text-align:center" id="tbl" var="variable" value="#{materielsControllers.listMateriels}"
+                     paginator="true" rows="9">
+                
+           <f:facet name="header">Listes des Matériels disponible</f:facet>
+            <p:column>
+                <f:facet name="header" >
+                    <h:outputText value="Matériel" style="color: #125181"/>
+                </f:facet>
+                <h:outputText value="#{variable.libelle}"/>
+            </p:column>
+
+            <p:column exportable="false">
+                <f:facet name="header">
+                    <h:outputText value="Type Materiel" style="color: #125181 ; width:30px"/>
+                </f:facet>
+                <h:outputText value="#{variable.typeMateriel.idTypemat}"/>
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Magasin" style="color: #125181 ; width:15px ; height:" />   
+                </f:facet>
+                <h:outputText value="#{variable.magasin.idMagasin}"/>
+            </p:column>
+
+            <p:column exportable="false">
+                <f:facet name="header">
+                    <h:outputText value="Quantité en stock" style="color: #125181 ; width:5px"/>
+                </f:facet>
+                <h:outputText value="#{variable.qte}"/>
+            </p:column>
+            
+            <p:column exportable="false">
+                <f:facet name="header">
+                    <h:outputText value="Doc Réference" style="color: #125181 ; width:15px"/>
+                </f:facet>
+                <h:outputText value="#{variable.reference}"/>
+            </p:column>
+            
+            
+             <p:column exportable="false"  >
+                <f:facet name="header" >
+                    <h:outputText value="Emplacement" style="color: #125181 ; width:30px" />
+                </f:facet>
+                <h:outputText value="#{variable.emplacement}"/>
+            </p:column>
+            
+            <p:column exportable="false"  >
+                <f:facet name="header" >
+                    <h:outputText value="Action" style="color: #125181 ; width:30px" />
+                </f:facet>
+                <p:commandButton value="Faire la Demende"></p:commandButton>
+            </p:column>
+            
+        </p:dataTable>
+        </div>
+       
+    </h:form>
+	 </div>	
+		
+		
+		  </ui:insert>
+		  </div>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="south">
+		<div id="footer">
+		  <ui:insert name="footer">
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+		  </ui:insert>
+		</div>
+	</p:layoutUnit>
+</p:layout>
+
+
+</h:body>
+</html>

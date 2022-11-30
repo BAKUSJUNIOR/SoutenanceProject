@@ -5,60 +5,86 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+      
 <h:head>
- <link rel="stylesheet" type="text/css" href="../ressources/css/ngo.css"></link>
-<link rel="stylesheet" type="text/css" href="../ressources/css/monStyle.css"></link>
-<link rel="stylesheet" type="text/css" href="../resource/css/domi.css"></link>
-  <title><ui:insert name="title">LE NOM DU LOGICIEL</ui:insert></title>
+
+ <link rel="stylesheet" type="text/css" href="/ressource/css/ngo.css"></link>
+<link rel="stylesheet" type="text/css" href="/ressource/css/monStyle.css"></link>
+<link rel="stylesheet" type="text/css" href="/resource/css/domi.css"></link>
+<link rel="stylesheet" type="text/css" href="/resource/css/Style.css"></link>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+  <title><ui:insert name="title">ISMIGestion</ui:insert></title>
+  
 </h:head>
 
 <h:body>
+
 <p:layout fullPage="true">
-<p:layoutUnit position="north">
-<div id="header">
-    <ui:insert name="header">
-    	<ui:include  src="/templates/header.xhtml"></ui:include>
-    </ui:insert>
-</div>
-</p:layoutUnit>
-
-<p:layoutUnit position="west" size="225" header="Accueil" collapsible="true">
-
-	<h:form>
-		<p:panelMenu >
-			
-		
-		<p:submenu label="PARAMETRAGE">
-			
-			<p:menuitem value="Medicament" outcome="/pagesAdmin/Medicament.xhtml"/>
-			
-		</p:submenu>
-			
-		<p:submenu label="ONGLET 2">
-
-		</p:submenu>
-		
-		</p:panelMenu>
-	</h:form>
-</p:layoutUnit>
-
-<p:layoutUnit position="center" >
-<div id="content" class="div_fond">
-  <ui:insert name="body" >
-    <h1>UN MESSAGE DE BIENVENU ICI SI VOUSLE VOULEZ</h1>   
+	<p:layoutUnit position="north">
+		<div id="header">
+		    <ui:insert name="header">
+		    	<ui:include  src="/templates/header.xhtml"></ui:include>
+		    </ui:insert>
+		</div>
+	</p:layoutUnit>
 	
-  </ui:insert>
-</div>
-</p:layoutUnit>
+	<p:layoutUnit position="west" size="270" header="ISMI GESTION" collapsible="true" style="background-color:#0c0c0ca0">
+	
+		<h:form>
+			<p:panelMenu >	
+			
+				<p:submenu label="Tâche Admin"  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 19px">
+					<p:menuitem value="ACCUEIL" outcome="/index.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 17px"/>
+					<p:menuitem value="ARTICLES" outcome="/pagesAdmin/Article.xhtml" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+					<p:menuitem value="CATEGORIE ET MAGASIN" outcome="/pagesAdmin/TypeMateriel.xhtml " style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+				</p:submenu>
+					
+				<p:submenu label="Gestion Personnel" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 19px">
+		
+		<p:menuitem value="ENREGISTRER PERSONNEL" outcome="/pagesAdmin/TypeMateriel.xhtml " style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; font-size: 17px"/>
+		
+		
+				</p:submenu>
+			
+			</p:panelMenu>
+		</h:form>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="center" >
+		<div id="content" class="div_fond">
+		  <ui:insert name="body" >
+		
 
-<p:layoutUnit position="south">
-<div id="footer">
-  <ui:insert name="footer">
-		<ui:include src="/templates/footer.xhtml"></ui:include>
-  </ui:insert>
-</div>
-</p:layoutUnit>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  </ui:insert>
+		  </div>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="south">
+		<div id="footer">
+		  <ui:insert name="footer">
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+		  </ui:insert>
+		</div>
+	</p:layoutUnit>
 </p:layout>
-</h:body>
 
+
+</h:body>
 </html>

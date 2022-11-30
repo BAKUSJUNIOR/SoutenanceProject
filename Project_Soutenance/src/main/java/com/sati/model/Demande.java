@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 17 oct. 2022 à 19:09:55 by Hibernate Tools 4.3.6.Final
+// Generated 7 nov. 2022 à 12:20:01 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,21 +32,27 @@ public class Demande implements java.io.Serializable {
 	private String motif;
 	private String designation;
 	private Date date;
+	private int qte;
+	private String observation;
 	private Set<SortirMateriel> sortirMateriels = new HashSet<SortirMateriel>(0);
 
 	public Demande() {
 	}
 
-	public Demande(Entite entite, EtatDemande etatDemande, Materiels materiels, String motif, String designation) {
+	public Demande(Entite entite, EtatDemande etatDemande, Materiels materiels, String motif, String designation,
+			Date date, int qte) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiels = materiels;
 		this.motif = motif;
 		this.designation = designation;
+		this.date = date;
+		this.qte = qte;
 	}
 
 	public Demande(Entite entite, EtatDemande etatDemande, Materiels materiels, SortirMateriel sortirMateriel,
-			String motif, String designation, Date date, Set<SortirMateriel> sortirMateriels) {
+			String motif, String designation, Date date, int qte, String observation,
+			Set<SortirMateriel> sortirMateriels) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiels = materiels;
@@ -54,6 +60,8 @@ public class Demande implements java.io.Serializable {
 		this.motif = motif;
 		this.designation = designation;
 		this.date = date;
+		this.qte = qte;
+		this.observation = observation;
 		this.sortirMateriels = sortirMateriels;
 	}
 
@@ -128,13 +136,31 @@ public class Demande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE", length = 19)
+	@Column(name = "DATE", nullable = false, length = 19)
 	public Date getDate() {
 		return this.date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	@Column(name = "QTE", nullable = false)
+	public int getQte() {
+		return this.qte;
+	}
+
+	public void setQte(int qte) {
+		this.qte = qte;
+	}
+
+	@Column(name = "OBSERVATION", length = 65535)
+	public String getObservation() {
+		return this.observation;
+	}
+
+	public void setObservation(String observation) {
+		this.observation = observation;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "demande")

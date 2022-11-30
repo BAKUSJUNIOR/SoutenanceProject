@@ -1,0 +1,131 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+		<ui:composition template="/templates/templateAdmin.xhtml">
+		
+		<ui:define name="body">
+		
+		<div style="font-size: 15px ;  padding-left: 20px; padding-right: 20px">
+		<h:form>
+		<p:panel header="ENREGISTRER LES MATERIELS" style="text-align:center ; padding:20px">
+		
+		<h:panelGrid columns="4" cellspacing="16" style="margin: 15px;">
+		
+		
+	       
+		
+          <p:outputLabel for="libelle" value="Materiels :" />
+            <p:inputText id="libelle" value="#{materielsControllers.materiels.libelle}" />
+            
+            
+	       <p:outputLabel for="Qte" value="Quantité :" />
+            <p:inputText id="Qte" value="#{materielsControllers.materiels.qte}" />
+	       
+	    
+           
+             <p:outputLabel for="DocReference" value="Doc-reference :"/>
+            <p:inputText id="DocReference" value=" #{materielsControllers.materiels.reference}" />
+            
+            
+            <p:outputLabel for="emplacement" value="Emplacement_produit :"/>
+            <p:inputText id="emplacement" value="#{materielsControllers.materiels.emplacement} "/>
+            
+            <p:outputLabel for="emplacement" value="Utilisateur :"/>
+            <p:inputText id="utilisateur" value="#{materielsControllers.materiels.utilisateur} "/>
+     
+           
+            
+            
+            <h:outputLabel value="Magasin:">
+			<p:selectOneMenu value="#{materielsControllers.idMagasin}"  >
+			 <f:selectItem itemLabel="Selectionnez le magasin " itemValue=""/>
+			 <f:selectItems value="#{materielsControllers.listMagasin}" var="var" itemLabel="#{var.nomMagasin}" itemValue="#{var.idMagasin}"></f:selectItems>
+			</p:selectOneMenu>
+	      </h:outputLabel>
+   
+    <h:outputLabel value="Type Materiel:" >
+			<p:selectOneMenu value="#{materielsControllers.idTypemat}"  >
+			 <f:selectItem itemLabel="Selectionnez Type materiel " itemValue=""/>
+			 <f:selectItems value="#{materielsControllers.listTypeMateriel}" var="var" itemLabel="#{var.nomTypemat}" itemValue="#{var.idTypemat}"></f:selectItems>
+			</p:selectOneMenu>
+	  </h:outputLabel>
+  
+	      
+ 
+		</h:panelGrid>
+			<p:toolbar>
+	         <f:facet name="left">
+	         
+	            <p:commandButton value="Enregistrer Materiel"  actionListener="#{materielsControllers.enregistrer}"  ><p:confirm header="confirmation" message="confirmez-vous la suppression?"></p:confirm></p:commandButton>
+	             <p:commandButton  value="Modifier " actionListener="#{materielsControllers.modifier}" binding="#{materielsControllers.modifierBtn}"   ><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm> </p:commandButton>
+	             <p:commandButton value="Annuler"  actionListener="#{materielsControllers.annuler}"  ></p:commandButton> 
+	             <p:commandButton value="Supprimer"  actionListener="#{materielsControllers.supprimer}"  ><p:confirm header="confirmation" message="confirmez-vous la suppression?"></p:confirm> </p:commandButton>  
+	         
+	         </f:facet>
+	   </p:toolbar>
+			
+		</p:panel>
+		
+		
+		<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
+		
+		<p:dataTable var="variable" value="#{materielsControllers.listMateriels}" selectionMode="single" rowKey="#{variable.idMateriel}">
+		<f:facet name="header">Listes des Matériels</f:facet>
+		
+		<p:column headerText="Matériel" style="width:50px">
+	     <h:outputText value="#{variable.libelle}" />
+	    </p:column>
+	    
+	    <p:column headerText="TypeMateriel" style="width:50px">
+	     <h:outputText value="#{variable.typeMateriel.idTypemat} " />
+	    </p:column>
+	    
+	    <p:column headerText="TypeMateriel" style="width:50px">
+	     <h:outputText value="#{variable.magasin.idMagasin}" />
+	    </p:column>
+	    
+	    
+	    
+	    <p:column headerText="Quantité" style="width:10px">
+	     <h:outputText value="#{variable.qte}" />
+	    </p:column>
+	    
+	     <p:column headerText="Doc Réference" style="width:30px">
+	     <h:outputText value="#{variable.reference}" />
+	     </p:column>
+	     
+	     
+	     <p:column headerText="Emplacement" style="width:60px">
+	     <h:outputText value="#{variable.emplacement}" />
+	     </p:column>
+	     
+	      <p:column headerText="Utilisateur" style="width:60px">
+	     <h:outputText value="#{variable.utilisateur}" />
+	     </p:column>
+	     
+		</p:dataTable>
+</div>
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   
+	   </p:confirmDialog>
+		
+		</h:form>
+		</div>
+		</ui:define>
+		
+		
+	</ui:composition>
+	
+
+</html>
